@@ -1,0 +1,59 @@
+# =========================================
+# Rust / Cargo
+# =========================================
+target/
+Cargo.lock         # (Optional: commit only if building an app, not a library)
+*.rs.bk
+
+# =========================================
+# Substrate Node Specific
+# =========================================
+# Node keys, keystore, chains, DB
+**/db/
+**/chains/
+**/chain-data/
+**/node-data/
+**/keystore/
+**/local/
+**/*.pid
+
+# Generated chain spec files
+*.json  # <-- if you want to ignore raw / spec files (optional)
+codewing-raw-clean.json
+codewing.json
+codewing-raw.json
+*.chainSpec
+
+# =========================================
+# OS / Editor
+# =========================================
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains
+.idea/
+
+# Logs
+*.log
+
+# =========================================
+# Build artifacts
+# =========================================
+*.exe
+*.dll
+*.so
+*.dylib
+*.wasm
+*.tmp
+
+# =========================================
+# Other
+# =========================================
+**/.cache/
+.cache/
+npm-debug.log
+yarn-error.log
