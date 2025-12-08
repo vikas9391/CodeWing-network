@@ -1,5 +1,5 @@
 [package]
-name = "pallet-login"
+name = "pallet-template"
 description = "A custom login pallet for handling on-chain user authentication."
 version = "0.1.0"
 license = "Unlicense"

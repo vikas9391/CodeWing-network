@@ -1,28 +1,28 @@
-FROM docker.io/paritytech/ci-unified:latest as builder
+FROM rust:1.82 as builder
 
-WORKDIR /polkadot
-COPY . /polkadot
+RUN apt-get update && \
+    apt-get install -y cmake pkg-config libssl-dev git clang libclang-dev protobuf-compiler && \
+    rustup component add rust-src --toolchain 1.82.0-x86_64-unknown-linux-gnu && \
+    rustup target add wasm32-unknown-unknown --toolchain 1.82.0-x86_64-unknown-linux-gnu
 
-RUN cargo fetch
-RUN cargo build --locked --release
+WORKDIR /codewing
 
-FROM docker.io/parity/base-bin:latest
+COPY . .
 
-COPY --from=builder /polkadot/target/release/solochain-template-node /usr/local/bin
+RUN cargo build --release
 
-USER root
-RUN useradd -m -u 1001 -U -s /bin/sh -d /polkadot polkadot && \
-	mkdir -p /data /polkadot/.local/share && \
-	chown -R polkadot:polkadot /data && \
-	ln -s /data /polkadot/.local/share/polkadot && \
-# unclutter and minimize the attack surface
-	rm -rf /usr/bin /usr/sbin && \
-# check if executable works in this container
-	/usr/local/bin/solochain-template-node --version
 
-USER polkadot
 
-EXPOSE 30333 9933 9944 9615
-VOLUME ["/data"]
+FROM debian:stable-slim
 
-ENTRYPOINT ["/usr/local/bin/solochain-template-node"]
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    update-ca-certificates
+
+WORKDIR /app
+
+COPY --from=builder /codewing/target/release/solochain-template-node /app/node
+
+EXPOSE 30333 9933 9944
+
+ENTRYPOINT ["/app/node"]

@@ -17,13 +17,6 @@ Cargo.lock         # (Optional: commit only if building an app, not a library)
 **/local/
 **/*.pid
 
-# Generated chain spec files
-*.json  # <-- if you want to ignore raw / spec files (optional)
-codewing-raw-clean.json
-codewing.json
-codewing-raw.json
-*.chainSpec
-
 # =========================================
 # OS / Editor
 # =========================================

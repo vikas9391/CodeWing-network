@@ -1,0 +1,10 @@
+target
+node_modules
+.git
+.github
+.dockerignore
+Dockerfile
+*.log
+*.tmp
+.wasm
+**/*.wasm
