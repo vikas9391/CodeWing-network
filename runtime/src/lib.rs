@@ -3,6 +3,8 @@
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
+use pallet_data_storage;
+
 pub mod apis;
 #[cfg(feature = "runtime-benchmarks")]
 mod benchmarks;
@@ -26,6 +28,8 @@ pub use pallet_timestamp::Call as TimestampCall;
 pub use sp_runtime::BuildStorage;
 
 pub mod genesis_config_presets;
+
+
 
 /// Opaque types. These are used by the CLI to instantiate machinery that don't need to know
 /// the specifics of the runtime. They can then be made to be agnostic over specific formats
@@ -229,4 +233,18 @@ mod runtime {
 	// Include the custom logic from the pallet-template in the runtime.
 	#[runtime::pallet_index(7)]
 	pub type Template = pallet_template;
+	// Custom Data Storage Pallet
+    #[runtime::pallet_index(8)]
+    pub type DataStorage = pallet_data_storage;
+
+}
+
+impl pallet_data_storage::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type WeightInfo = pallet_data_storage::weights::SubstrateWeight<Runtime>;
+}
+
+impl pallet_data_storage::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type WeightInfo = pallet_data_storage::weights::SubstrateWeight<Runtime>;
 }

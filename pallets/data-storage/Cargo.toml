@@ -1,0 +1,43 @@
+[package]
+name = "pallet-data-storage"
+version = "0.1.0"
+description = "A custom pallet for storing data on-chain."
+edition.workspace = true
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+license = "Unlicense"
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { features = ["derive"], workspace = true }
+scale-info = { features = ["derive"], workspace = true }
+frame-support.workspace = true
+frame-system.workspace = true
+sp-runtime.workspace = true   
+
+
+# Required for benchmarking
+frame-benchmarking = { workspace = true, optional = true }
+
+[dev-dependencies]
+sp-core.workspace = true
+sp-io.workspace = true
+sp-runtime.workspace = true
+
+[features]
+default = ["std"]
+std = [
+    "codec/std",
+    "scale-info/std",
+    "frame-support/std",
+    "frame-system/std",
+    "frame-benchmarking/std",
+]
+
+runtime-benchmarks = [
+    "frame-benchmarking/runtime-benchmarks",
+]
