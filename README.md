@@ -5,3 +5,14 @@ docker run --rm `
   --tmp `
   --rpc-external `
   --rpc-cors all
+
+
+node .\node_modules\tailwindcss\lib\cli.js init -p
+
+wsl -d Ubuntu
+
+pwd
+
+ls
+
+./target/release/solochain-template-node --dev
