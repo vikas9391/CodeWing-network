@@ -1,0 +1,21 @@
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codewing-node
+    image: codewing/node:latest
+    ports:
+      - "9944:9944"
+      - "9933:9933"
+      - "30333:30333"
+    volumes:
+      - ./data:/app/data
+    command: >
+      /app/node
+      --dev
+      --ws-external
+      --rpc-external
+      --rpc-cors=all
+      --unsafe-ws-external
+      --unsafe-rpc-external

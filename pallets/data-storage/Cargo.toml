@@ -1,40 +1,37 @@
+#C:\Users\vikas\Desktop\CodeWing-network\pallets\data-storage\Cargo.toml
 [package]
 name = "pallet-data-storage"
 version = "0.1.0"
-description = "A custom pallet for storing data on-chain."
-edition.workspace = true
-authors.workspace = true
-homepage.workspace = true
-repository.workspace = true
+edition = "2021"
+authors = ["CodeWing"]
+description = "pallet-data-storage: store small blobs on-chain"
 license = "Unlicense"
 publish = false
 
-[package.metadata.docs.rs]
-targets = ["x86_64-unknown-linux-gnu"]
-
 [dependencies]
-codec = { features = ["derive"], workspace = true }
-scale-info = { features = ["derive"], workspace = true }
-frame-support.workspace = true
-frame-system.workspace = true
-sp-runtime.workspace = true   
+frame-support = { workspace = true, default-features = false }
+frame-system = { workspace = true, default-features = false }
+codec = { features = ["derive"], workspace = true, default-features = false }
+scale-info = { features = ["derive"], workspace = true, default-features = false }
+sp-runtime = { workspace = true, default-features = false }
 
-
-# Required for benchmarking
-frame-benchmarking = { workspace = true, optional = true }
+# optional benchmarking
+frame-benchmarking = { workspace = true, optional = true, default-features = false }
 
 [dev-dependencies]
-sp-core.workspace = true
-sp-io.workspace = true
-sp-runtime.workspace = true
+sp-core = { workspace = true, default-features = true }
+sp-io = { workspace = true, default-features = true }
+sp-runtime = { workspace = true, default-features = true }
 
 [features]
 default = ["std"]
+
 std = [
-    "codec/std",
-    "scale-info/std",
     "frame-support/std",
     "frame-system/std",
+    "codec/std",
+    "scale-info/std",
+    "sp-runtime/std",
     "frame-benchmarking/std",
 ]
 

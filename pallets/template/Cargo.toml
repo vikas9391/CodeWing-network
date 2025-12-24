@@ -1,3 +1,4 @@
+#C:\Users\vikas\Desktop\CodeWing-network\pallets\template\Cargo.toml
 [package]
 name = "pallet-template"
 description = "A custom login pallet for handling on-chain user authentication."
@@ -13,19 +14,20 @@ publish = false
 targets = ["x86_64-unknown-linux-gnu"]
 
 [dependencies]
-codec = { features = ["derive"], workspace = true }
-frame-benchmarking = { optional = true, workspace = true }
-frame-support.workspace = true
-frame-system.workspace = true
-scale-info = { features = ["derive"], workspace = true }
+codec = { features = ["derive"], workspace = true, default-features = false }
+frame-benchmarking = { optional = true, workspace = true, default-features = false }
+frame-support = { workspace = true, default-features = false }
+frame-system = { workspace = true, default-features = false }
+scale-info = { features = ["derive"], workspace = true, default-features = false }
 
 [dev-dependencies]
-sp-core = { default-features = true, workspace = true }
-sp-io = { default-features = true, workspace = true }
-sp-runtime = { default-features = true, workspace = true }
+sp-core = { workspace = true, default-features = true }
+sp-io = { workspace = true, default-features = true }
+sp-runtime = { workspace = true, default-features = true }
 
 [features]
 default = ["std"]
+
 std = [
     "codec/std",
     "frame-benchmarking?/std",
@@ -33,12 +35,14 @@ std = [
     "frame-system/std",
     "scale-info/std",
 ]
+
 runtime-benchmarks = [
     "frame-benchmarking/runtime-benchmarks",
     "frame-support/runtime-benchmarks",
     "frame-system/runtime-benchmarks",
     "sp-runtime/runtime-benchmarks",
 ]
+
 try-runtime = [
     "frame-support/try-runtime",
     "frame-system/try-runtime",

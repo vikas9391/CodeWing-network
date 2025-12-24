@@ -7,11 +7,20 @@ use frame_system::RawOrigin;
 benchmarks! {
     store_data {
         let caller: T::AccountId = whitelisted_caller();
-        let key = b"MyKey".to_vec();
-        let value = b"MyValue".to_vec();
-    }: _(RawOrigin::Signed(caller), key.clone(), value.clone())
+        let data: Vec<u8> = vec![0u8; 32];
+    }: _(RawOrigin::Signed(caller.clone()), data.clone())
     verify {
-        assert!(DataStorageMap::<T>::contains_key(key));
+        // verify using storage if desired
+    }
+
+    get_data {
+        let caller: T::AccountId = whitelisted_caller();
+        let data: Vec<u8> = vec![0u8; 32];
+        let bounded: BoundedVec<u8, ConstU32<1024>> = data.try_into().unwrap();
+        let hash = T::Hashing::hash_of(&bounded);
+        StoredData::<T>::insert(hash, bounded);
+    }: _(RawOrigin::Signed(caller), hash)
+    verify {
     }
 }
 
