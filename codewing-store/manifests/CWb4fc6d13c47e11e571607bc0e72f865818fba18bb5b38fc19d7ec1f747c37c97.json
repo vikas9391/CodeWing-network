@@ -1,0 +1,17 @@
+{
+  "manifest": {
+    "cid": "CWb4fc6d13c47e11e571607bc0e72f865818fba18bb5b38fc19d7ec1f747c37c97",
+    "name": "Manohardav.docx",
+    "size": 24136,
+    "chunk_cids": [
+      "CWd7ed075474f1762d424bdf1ee2b0198f8a4b01943d0175e6005542084afda192"
+    ],
+    "chunk_count": 1,
+    "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "encrypted": true
+  },
+  "owner": "anonymous",
+  "encryption_key": "95812499ebcfaf4c5f9b35f2abbb2c965a54974e7e5d66217b75b07c18450a39",
+  "stored_at": 1772702602,
+  "node_id": "local"
+}

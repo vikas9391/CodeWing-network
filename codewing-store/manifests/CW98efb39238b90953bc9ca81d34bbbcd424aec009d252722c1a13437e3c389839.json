@@ -1,0 +1,17 @@
+{
+  "manifest": {
+    "cid": "CW98efb39238b90953bc9ca81d34bbbcd424aec009d252722c1a13437e3c389839",
+    "name": "CodeWing-Requirements (1).pptx",
+    "size": 490771,
+    "chunk_cids": [
+      "CWeaf17d23f872d02bbefec4ce34542ebaff40ba96f3694df825f9aaa2b261c087"
+    ],
+    "chunk_count": 1,
+    "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "encrypted": true
+  },
+  "owner": "CW4FB29208B2A4110E4FCEE171D74CBE5C4F085175",
+  "encryption_key": "dcabdc02662f03cf9978201e266918c2d612e8e179f0190fd50f1064abb4b95a",
+  "stored_at": 1772789075,
+  "node_id": "local"
+}

@@ -1,0 +1,17 @@
+{
+  "manifest": {
+    "cid": "CW506e06bdc007a5b70533e8559f889f455bd4e56ac749aa7d080fd3ac1709a590",
+    "name": "AD2 Final PPT-batch 08 (1).pptx",
+    "size": 238704,
+    "chunk_cids": [
+      "CWd4eead97c0194d547276ebc8d57cfe6dcc1a606133a5d4b73f011b0b7fa11b3d"
+    ],
+    "chunk_count": 1,
+    "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "encrypted": true
+  },
+  "owner": "anonymous",
+  "encryption_key": "d0e0ffde4ad4ad8715d7d7d9a163ee54232302ee1192351156f618bc77e82b5d",
+  "stored_at": 1772730787,
+  "node_id": "local"
+}
