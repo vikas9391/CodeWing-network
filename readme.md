@@ -1,11 +1,21 @@
+#  CodeWing Network
+
+A **decentralized blockchain + distributed storage system** built in Rust.
+Combines **P2P networking, blockchain, and IPFS-like storage** with a modern frontend.
+
+---
+
+##  Architecture
+
+```text
 ┌─────────────────────────────────────────────┐
-│              Frontend (Web + App)            │
-│         React/Next.js or Tauri (Rust)        │
+│              Frontend (Web + App)           │
+│         React / Next.js / Tauri (Rust)      │
 └────────────────┬────────────────────────────┘
                  │ REST / WebSocket / gRPC
 ┌────────────────▼────────────────────────────┐
-│              API Layer (Rust)                │
-│         Axum / Actix-web server              │
+│              API Layer (Rust)               │
+│         Axum / Actix-web server             │
 └────────────────┬────────────────────────────┘
         ┌────────┴────────┐
         ▼                 ▼
@@ -13,67 +23,116 @@
 │  Blockchain   │  │   Distributed Storage     │
 │  Node (Rust)  │  │  (IPFS-like / chunks)     │
 └───────────────┘  └──────────────────────────┘
+```
 
+---
+
+##  Project Structure
+
+```bash
 codewing-network/
 ├── Cargo.toml
 ├── src/
 │   ├── main.rs
 │   ├── cli.rs
 │   ├── blockchain/
-│   │   ├── mod.rs
 │   │   ├── block.rs
 │   │   ├── chain.rs
 │   │   ├── transaction.rs
 │   │   └── mempool.rs
 │   ├── crypto/
-│   │   ├── mod.rs
 │   │   ├── wallet.rs
 │   │   └── merkle.rs
 │   ├── storage/
-│   │   ├── mod.rs
 │   │   ├── chunker.rs
 │   │   ├── node.rs
 │   │   └── proof.rs
 │   ├── network/
-│   │   ├── mod.rs
 │   │   └── p2p.rs
 │   └── api/
-│       ├── mod.rs
 │       └── routes.rs
+```
 
+---
 
-# 1. Clone / create the project
-cargo new codewing-network && cd codewing-network
-# Copy all files above into src/
+## Getting Started
 
-# 2. Run the node (API server)
+### 1️ Clone the repository
+
+```bash
+git clone https://github.com/vikas9391/CodeWing-network.git
+cd CodeWing-network
+```
+
+---
+
+### 2️ Run the Node (API Server)
+
+```bash
 cargo run --bin codewing-node
+```
 
-# 3. Use the CLI
+---
+
+### 3️ Use the CLI
+
+```bash
+# Create wallet
 cargo run --bin codewing-cli -- new-wallet
+
+# View stats
 cargo run --bin codewing-cli -- stats
+
+# Mine block
 cargo run --bin codewing-cli -- mine CW1234...ADDRESS
+
+# Upload & chunk file
 cargo run --bin codewing-cli -- chunk-file ./myfile.pdf
+```
 
-# 4. Hit the API
+---
+
+### 4️ API Usage
+
+```bash
+# Get blockchain stats
 curl http://localhost:3000/api/chain/stats
+
+# Create wallet
 curl -X POST http://localhost:3000/api/wallet/new
+
+# Mine block
 curl -X POST http://localhost:3000/api/mine/CW_YOUR_ADDRESS
+```
 
+---
 
-test :
+##  Multi-Node Testing
 
-# Terminal 1 — Node A (port 3000)
+### ▶ Start Node A
+
+```bash
 $env:API_PORT="3000"
 $env:P2P_PORT="4000"
 cargo run --bin codewing-node
-# Terminal 2 — Node B (port 3001)
+```
+
+---
+
+### ▶ Start Node B
+
+```bash
 $env:API_PORT="3001"
 $env:P2P_PORT="4001"
 $env:STORE_DIR="./store-b"
 cargo run --bin codewing-node
+```
 
-# Announce Node B to Node A
+---
+
+###  Connect Node B to Node A
+
+```powershell
 Invoke-RestMethod -Method POST `
   -Uri "http://localhost:3000/api/nodes/announce" `
   -ContentType "application/json" `
@@ -87,11 +146,53 @@ Invoke-RestMethod -Method POST `
     "last_seen": 0,
     "version": "0.4.0"
   }'
+```
 
-# Now upload a file — it distributes across both nodes!
+---
+
+### Upload File (Distributed Across Nodes)
+
+```powershell
 Invoke-RestMethod -Method POST `
   -Uri "http://localhost:3000/api/storage/upload" `
   -Form @{
       file = Get-Item "./test.txt"
       owner = "CWtest"
   }
+```
+
+---
+
+##  Features
+
+*  Custom Blockchain (Rust)
+*  P2P Networking (libp2p)
+*  Distributed Storage (Chunk-based, IPFS-like)
+*  Wallet + Cryptography (Merkle Trees)
+*  Fast API (Axum / Actix)
+*  CLI + Frontend support
+
+---
+
+##  Future Improvements
+
+* Smart Contracts
+* Token Economy
+* Node Reputation System
+* Web Dashboard Enhancements
+* File Retrieval & Proof Verification
+
+---
+
+##  Contributing
+
+Pull requests are welcome!
+Feel free to fork and improve 
+
+---
+
+##  License
+
+MIT License
+
+---
